@@ -69,7 +69,6 @@ import io.milton.http.http11.auth.LoginResponseHandler;
 import io.milton.http.http11.auth.LoginResponseHandler.LoginPageTypeHandler;
 import io.milton.http.http11.auth.Nonce;
 import io.milton.http.http11.auth.NonceProvider;
-import io.milton.http.http11.auth.OAuth2AuthenticationHandler;
 import io.milton.http.http11.auth.SimpleMemoryNonceProvider;
 import io.milton.http.json.JsonPropFindHandler;
 import io.milton.http.json.JsonPropPatchHandler;
@@ -243,9 +242,6 @@ public class HttpManagerBuilder {
 	private boolean useLongLivedCookies = true;
 	private boolean enableQuota = false;
 
-	private OAuth2AuthenticationHandler oAuth2Handler;
-
-	private boolean enableOAuth2 = false;
 
 	protected io.milton.http.SecurityManager securityManager() {
 		if (securityManager == null) {
@@ -340,16 +336,6 @@ public class HttpManagerBuilder {
 					authenticationHandlers.add(digestHandler);
 				}
 
-				if (oAuth2Handler == null) {
-					if (enableOAuth2) {
-
-						oAuth2Handler = new OAuth2AuthenticationHandler(nonceProvider);
-					}
-				}
-				if (oAuth2Handler != null) {
-					authenticationHandlers.add(oAuth2Handler);
-				}
-
 				if (formAuthenticationHandler == null) {
 					if (enableFormAuth) {
 						formAuthenticationHandler = new FormAuthenticationHandler();
@@ -377,10 +363,6 @@ public class HttpManagerBuilder {
 							if (formAuthenticationHandler != null) {
 								cookieDelegateHandlers.add(formAuthenticationHandler);
 								authenticationHandlers.remove(formAuthenticationHandler);
-							}
-							if (oAuth2Handler != null) {
-								cookieDelegateHandlers.add(oAuth2Handler);
-								authenticationHandlers.remove(oAuth2Handler);
 							}
 						}
 						initCookieSigningKeys();
@@ -1043,14 +1025,6 @@ public class HttpManagerBuilder {
 		this.basicHandler = basicHandler;
 	}
 
-	public OAuth2AuthenticationHandler getoAuth2Handler() {
-		return oAuth2Handler;
-	}
-
-	public void setoAuth2Handler(OAuth2AuthenticationHandler oAuth2Handler) {
-		this.oAuth2Handler = oAuth2Handler;
-	}
-
 	public CookieAuthenticationHandler getCookieAuthenticationHandler() {
 		return cookieAuthenticationHandler;
 	}
@@ -1073,22 +1047,6 @@ public class HttpManagerBuilder {
 
 	public void setDigestHandler(DigestAuthenticationHandler digestHandler) {
 		this.digestHandler = digestHandler;
-	}
-
-	public OAuth2AuthenticationHandler getOAuth2Handler() {
-		return oAuth2Handler;
-	}
-
-	public void setOAuth2Handler(OAuth2AuthenticationHandler oAuth2Handler) {
-		this.oAuth2Handler = oAuth2Handler;
-	}
-
-	public boolean isEnableOAuth2() {
-		return enableOAuth2;
-	}
-
-	public void setEnableOAuth2(boolean enableOAuth2) {
-		this.enableOAuth2 = enableOAuth2;
 	}
 
 	public FormAuthenticationHandler getFormAuthenticationHandler() {
