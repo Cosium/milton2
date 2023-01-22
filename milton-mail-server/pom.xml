@@ -28,9 +28,9 @@
             <version>2.1.5</version>
         </dependency>
         <dependency>
-            <groupId>org.subethamail</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>subethasmtp-smtp</artifactId>
-            <version>1.2</version>
+            <version>${project.version}</version>
         </dependency>
                 <!-- mvn install:install-file -DgroupId=org.masukomi -DartifactId=aspirin-core -Dversion=1.0 -Dpackaging=jar -Dfile=/path/to/file -->
         <dependency>

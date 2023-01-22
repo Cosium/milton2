@@ -54,6 +54,7 @@
         <module>milton-proxy</module>
         <module>milton-mail-api</module>
         <module>milton-mail-server</module>
+        <module>subethasmtp-smtp</module>
     </modules>
     <build>
         <plugins>
