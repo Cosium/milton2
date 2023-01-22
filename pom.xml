@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.milton</groupId>
     <artifactId>milton</artifactId>
-    <version>4.0.0.1129</version>
+    <version>4.0.0.1129.0.cosium-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>milton</name>
     <description>With Milton WebDAV Server Library for Java you can create your own WebDAV server, add WebDAV support to your existing Java project or DAV-enable your CMS/DMS/CRM.</description>
@@ -95,34 +95,6 @@
                         <additionalJOption>--add-exports</additionalJOption>
                         <additionalJOption>java.naming/com.sun.jndi.ldap=ALL-UNNAMED</additionalJOption>
                     </additionalJOptions>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>${GPG_PATH}</executable>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.13</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
