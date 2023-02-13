@@ -87,7 +87,11 @@ public class ServletResponse extends AbstractResponse {
 		if (status.text == null) {
 			r.setStatus(status.code);
 		} else {
-			r.setStatus(status.code, status.text);
+			try {
+				r.sendError(status.code, status.text);
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
 		}
 		this.status = status;
 	}
