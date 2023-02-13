@@ -84,7 +84,7 @@ public class ServletResponse extends AbstractResponse {
 
 	@Override
 	public void setStatus(Response.Status status) {
-		if (status.text == null) {
+		if (status.text == null || status.code < 400) {
 			r.setStatus(status.code);
 		} else {
 			try {
